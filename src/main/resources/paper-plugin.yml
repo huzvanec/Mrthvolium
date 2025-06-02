@@ -1,0 +1,12 @@
+name: Mrthvolium
+version: '1.0.0'
+main: cz.jeme.mrthvolium.Mrthvolium
+bootstrapper: cz.jeme.mrthvolium.MrthvoliumBootstrapper
+api-version: '1.21.5'
+author: Hužva
+description: Upon death, your corpse remains in the world, preserving your inventory
+load: STARTUP # needs to load before worlds to manage corpses in spawn chunks
+permissions:
+  mrthvolium.bypass.protection:
+    description: Allows players to open protected corpses
+    default: op

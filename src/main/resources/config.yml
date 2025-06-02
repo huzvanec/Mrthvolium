@@ -1,0 +1,125 @@
+# ===============================
+# Mrthvolium - Corpse Configuration
+# ===============================
+
+# You can use MiniMessage format in all text fields (names, titles, etc.).
+# MiniMessage supports colors and styles (bold, italic).
+# Format reference: https://docs.advntr.dev/minimessage/format.html
+
+corpse:
+  # Name shown above the corpse (supports MiniMessage and placeholders).
+  # Placeholders: <player_name>, <corpse_x>, <corpse_y>, <corpse_z>, <death_stamp>
+  # Example formatting: <corpse_x:'#.00'>, <death_stamp:'yyyy-MM-dd HH:mm:ss'>
+  # Set to null to disable name display.
+  # Changing this will affect existing corpses.
+  name: "<player_name>'s Corpse"
+  
+  # Time before a corpse rots.
+  # Examples: '1m', '1h 30m', '2d 1h 0m 30.340s', or 'P1DT2H3M4.058S' (https://en.wikipedia.org/wiki/ISO_8601).
+  # If corpse rotting is disabled, this sets the duration after which the corpse despawns, use '-1s' to disable despawning.
+  # Changing this will affect existing corpses.
+  rot-after: 2m
+  
+  # If true, all loaded corpses will be kept in memory until the server is shut down.
+  cache-corpses: true
+
+  protection:
+    # If true, only the dead player can access the corpse inventory.
+    # This restriction can be bypassed by players with the 'mrthvolium.bypass.protection' permission.
+    enabled: true
+    
+    # Text shown in the action bar when a corpse cannot be looted (supports MiniMessage and placeholders).
+    # Placeholders: <player_name>, <rot_time>
+    # Example formatting: <rot_time:'HH:mm:ss'>
+    action-bar: "<red>This corpse cannot be looted. It will rot in <aqua><rot_time:'HH:mm:ss'></aqua>."
+
+    # Sound played when a corpse cannot be looted.
+    sound:
+      sound: "minecraft:entity.player.attack.nodamage"
+      source: "neutral" # Sound category: https://minecraft.wiki/w/Sound#Categories
+      volume: 0.75
+      pitch: 1.5
+    
+    # Optional UI feedback (uncomment if needed)
+    
+    # Title shown when a corpse cannot be looted (supports MiniMessage and placeholders).
+    # Placeholders: <player_name>, <rot_time>
+    # Example formatting: <rot_time:'HH:mm:ss'>
+    #    title:
+    #      title: "<red>This corpse cannot be looted"
+    #      subtitle: "<red>It will rot in <aqua><rot_time:'mm:ss'>"
+    #      times:
+    #        fade-in: 0.5s
+    #        stay: 1s
+    #        fade-out: 0.5s
+
+    # Message shown in chat when a corpse cannot be looted (supports MiniMessage and placeholders).
+    # Placeholders: <player_name>, <rot_time>
+    # Example formatting: <rot_time:'HH:mm:ss'>
+  #    message: "<red>This corpse cannot be looted yet"
+  
+  rotten:
+    # Enables corpse rotting after 'corpse.rot-after' time
+    # Setting this to false will revert all existing rotten corpses to normal corpses and remove if older than 'corpse.rot-after'.
+    enabled: true
+    
+    # Name shown above the rotten corpse (supports MiniMessage and placeholders).
+    # Placeholders: <player_name>, <corpse_x>, <corpse_y>, <corpse_z>, <death_stamp>
+    # Example formatting: <corpse_x:'#.00'>, <death_stamp:'yyyy-MM-dd HH:mm:ss'>
+    # Set to null to disable name display.
+    # Changing this will affect existing rotten corpses.
+    name: "<player_name>'s Rotten Corpse"
+    
+    # Time before a rotten corpse despawns.
+    # Examples: '1m', '1h 30m', '2d 1h 0m 30.340s', or 'P1DT2H3M4.058S' (https://en.wikipedia.org/wiki/ISO_8601).
+    # Use '-1s' to disable despawning.
+    # Changing this will affect existing rotten corpses.
+    despawn-after: 30m
+    
+    protection:
+      # If true, only the dead player can access the rotten corpse inventory.
+      # This restriction can be bypassed by players with the 'mrthvolium.bypass.protection' permission.
+      enabled: false
+      
+      # If required, you can add UI feedback here (message, action-bar, title, sound - see 'corpse.protection').
+    
+    # Custom skin for the rotten corpse.
+    # Use https://mineskin.org/ to generate a custom skin value and signature.
+    # Changing this will affect existing rotten corpses.
+    skin:
+      value: "ewogICJ0aW1lc3RhbXAiIDogMTYyMzU4NjYyMDQ3NywKICAicHJvZmlsZUlkIiA6ICIzOTg5OGFiODFmMjU0NmQxOGIyY2ExMTE1MDRkZGU1MCIsCiAgInByb2ZpbGVOYW1lIiA6ICIzOTg5OGFiODFmMjU0NmQxIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIyOGM0MDUwZjdkMGJiYzEyMTZmMWFhNTQ4ZjUwMzY4ODFlY2U0NGQyMTdlMjY5ZWZlN2U2YWMzM2NlNjU1ZWQiCiAgICB9CiAgfQp9"
+      signature: "eTm3JHX9c0X3A1Y+yx8YnSp6JHej1rn8NyycxsE+QoHdEbFcCvpPkgcutt6XEcFHGMGnZWQLLPx1p1SXnguqaBXidZCmiWZ11cC6XHy99RXbD7Kf55nqEevqvi+aSnk7HNHQjuJ0/9Xq3gKIOujGGtT2hjn2YYIZU7tGedZRaGW+Asw3/cUL1dbm78paMW75TNflkdZBRimROuUT2+kBg3wH2gZYImPYFe8zQ3Drbn0M923AxB/WlRjUDK5f2VFyhL0+H0JKsH6r3YaQc0QNaT9jAtOebtVHLf0a6sbsxNi+D9v0zeOXTi6fJCo33QV/MBvlUqVtOPpocMcKkF7pa1Rz8IWqb0ia78MJlpae0KfDZRCab9Yi6tqKPsfycng47RLyFj/0Hr9yqEeEYXw1s3qGt6sNXqdIIZ4C1G3my9FNZOQ91kTfaks94wkdLnVG8osM5RT+baRo65t3FughKScZ+mFQ7z5rQitejopNb5eHU5jAGW8D9MUerNza7p1mA/PKakSENqvbEn6lfrPfqIyYQg+x1fU3liInS2S/FaBIQLsB8sESnsOpxca5N2PloUyUS9q45DCdPPCShrwSU1QadsFbSbDpstgWdICI81heESfsLTi2ki3Lo0fsojtI7lfCE8fX1vRvQtCxCI16S1ao1zl1I4Nt/GB2MrAWHB4="
+  
+  inventory:
+    # Title of the corpse inventory (supports MiniMessage and placeholders).
+    # Placeholders: <player_name>, <corpse_x>, <corpse_y>, <corpse_z>, <death_stamp>
+    # Example formatting: <corpse_x:'#.00'>, <death_stamp:'yyyy-MM-dd HH:mm:ss'>
+    # Changing this will affect existing corpses.
+    name: "<blue><death_stamp:'dd.MM.yyyy HH:mm:ss'>"
+    
+    loot-button:
+      # Enables or disables the loot button in the inventory.
+      enabled: true
+
+      # Item model used for the loot button.
+      # Custom resource packs can introduce custom item model (and texture).
+      model: "minecraft:structure_void"
+
+      # Display name of the loot button (supports MiniMessage).
+      name: "<bold><yellow>Loot Corpse"
+
+      # Tooltip (lore) shown when hovering over the loot button (supports MiniMessage).
+      lore:
+        - "<!italic><gold>Click to instantly loot this corpse"
+
+      # Adds enchantment glint effect to the item.
+      enchantment-glint: true
+
+debug:
+  # Log a message whenever a corpse is created.
+  # This also includes chunk loading.
+  log-corpse-creation: false
+  
+  # Log a message whenever a corpse is removed.
+  # If corpse caching is disabled, this also includes chunk unloading.
+  log-corpse-removal: false
