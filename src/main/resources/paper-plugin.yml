@@ -1,5 +1,5 @@
 name: Mrthvolium
-version: '1.0.0'
+version: '${version}'
 main: cz.jeme.mrthvolium.Mrthvolium
 bootstrapper: cz.jeme.mrthvolium.MrthvoliumBootstrapper
 api-version: '1.21.5'
