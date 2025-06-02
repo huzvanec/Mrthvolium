@@ -5,6 +5,9 @@
 Mrthvolium is a server-side plugin that adds corpses to the game. When a player dies, a corpse
 spawns at their death location, storing their items and experience.
 
+![corpse](branding/corpse.png)
+![inventory](branding/inventory.png)
+
 ## Supported platforms
 
 - [Paper 1.21.5](https://papermc.io)
