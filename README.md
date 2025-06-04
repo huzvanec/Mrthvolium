@@ -35,7 +35,7 @@ spawns at their death location, storing their items and experience.
 
 ### Uninstall the plugin
 
-Mrthvolium currently <ins>**cannot be uninstalled**</ins>.
+Mrthvolium currently <ins>**CANNOT BE UNINSTALLED**</ins>.
 > [!CAUTION]
 > Removing the plugin jar from the plugins folder will cause corpses to stop working.
 > Corpse nametags will remain visible in the world.  
