@@ -18,9 +18,12 @@ corpse:
   # Examples: '1m', '1h 30m', '2d 1h 0m 30.340s', or 'P1DT2H3M4.058S' (https://en.wikipedia.org/wiki/ISO_8601).
   # If corpse rotting is disabled, this sets the duration after which the corpse despawns, use '-1s' to disable despawning.
   # Changing this will affect existing corpses.
-  rot-after: 2m
+  rot-after: 30m
   
   # If true, all loaded corpses will be kept in memory until the server is shut down.
+  # true: faster and more efficient corpse spawning and interactions7
+  # false: saves a small amount of memory
+  # The impact of this setting is negligible, unless thousands of corpses are spawned.
   cache-corpses: true
 
   protection:
