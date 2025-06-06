@@ -33,7 +33,7 @@ corpse:
   spawn-in-void: true
   
   # If true, all loaded corpses will be kept in memory until the server is shut down.
-  # true: faster and more efficient corpse spawning and interactions7
+  # true: faster and more efficient corpse spawning and interactions
   # false: saves a small amount of memory
   # The impact of this setting is negligible, unless thousands of corpses are spawned.
   cache-corpses: true
