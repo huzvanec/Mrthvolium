@@ -127,6 +127,15 @@ interface PersistentData<P, C> : Keyed {
         )
 
         /**
+         * Corpse experience amount.
+         */
+        @JvmStatic
+        val CORPSE_EXPERIENCE = data(
+            Mrthvolium.key("corpse_experience"),
+            PersistentDataType.INTEGER
+        )
+
+        /**
          * Timestamp of corpse rotting (epoch millis).
          */
         @JvmStatic

@@ -14,6 +14,7 @@ import java.io.File
 internal object Mrthvolium : JavaPlugin() {
     override fun onEnable() {
         if (!File(dataFolder, "config.yml").exists()) {
+            saveDefaultConfig()
             // first start
             componentLogger.warn(
                 Component.text(
@@ -40,12 +41,12 @@ internal object Mrthvolium : JavaPlugin() {
                 )
             )
             componentLogger.info("$name will now be disabled until the next server restart.")
-            saveDefaultConfig()
 
             Bukkit.getPluginManager().disablePlugin(this)
-        } else {
-            CorpseManager // initialize corpse manager
+            return
         }
+
+        CorpseManager // initialize corpse manager
     }
 
     fun key(@KeyPattern.Value key: String): Key = NamespacedKey(this, key)

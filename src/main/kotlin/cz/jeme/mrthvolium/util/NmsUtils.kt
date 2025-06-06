@@ -5,6 +5,7 @@ import net.minecraft.server.dedicated.DedicatedServer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.network.ServerGamePacketListenerImpl
+import net.minecraft.world.phys.Vec3
 import org.bukkit.Server
 import org.bukkit.World
 import org.bukkit.craftbukkit.CraftEquipmentSlot
@@ -13,10 +14,12 @@ import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.craftbukkit.scoreboard.CraftScoreboard
+import org.bukkit.craftbukkit.util.CraftVector
 import org.bukkit.entity.Player
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import org.bukkit.scoreboard.Scoreboard
+import org.bukkit.util.Vector
 import net.minecraft.world.entity.EquipmentSlot as NMSEquipmentSlot
 import net.minecraft.world.item.ItemStack as NMSItemStack
 import net.minecraft.world.scores.Scoreboard as NMSScoreboard
@@ -46,3 +49,6 @@ inline val ItemStack?.nms: NMSItemStack
 
 inline val EquipmentSlot.nms: NMSEquipmentSlot
     get() = CraftEquipmentSlot.getNMS(this)
+
+inline val Vector.nms: Vec3
+    get() = CraftVector.toVec3(this)

@@ -1,6 +1,6 @@
-# ===============================
+# =================================
 # Mrthvolium - Corpse Configuration
-# ===============================
+# =================================
 
 # You can use MiniMessage format in all text fields (names, titles, etc.).
 # MiniMessage supports colors and styles (bold, italic).
@@ -19,6 +19,18 @@ corpse:
   # If corpse rotting is disabled, this sets the duration after which the corpse despawns, use '-1s' to disable despawning.
   # Changing this will affect existing corpses.
   rot-after: 30m
+  
+  # Whether a dead player's experience should be stored in their corpse.
+  # If enabled, the experience will be retrievable from the corpse, even if it despawns after being looted.
+  # If disabled, existing corpses will not drop any stored experience and new corpses
+  # will not absorb experience, it will drop immediately upon death.
+  store-experience: true
+  
+  # Whether a corpse spawns when a player dies in the void (below the world).
+  # If true, a corpse will spawn at the lowest Y-level of the world.
+  # If false, no corpse will spawn and the player's items and experience will fall into the void.
+  # Changing this will not affect existing corpses.
+  spawn-in-void: true
   
   # If true, all loaded corpses will be kept in memory until the server is shut down.
   # true: faster and more efficient corpse spawning and interactions7

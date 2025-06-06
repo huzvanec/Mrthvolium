@@ -24,11 +24,13 @@ import net.minecraft.world.scores.Team
 import org.bukkit.Bukkit
 import org.bukkit.Particle
 import org.bukkit.World
+import org.bukkit.entity.ExperienceOrb
 import org.bukkit.entity.Player
 import org.bukkit.entity.TextDisplay
 import org.bukkit.scheduler.BukkitTask
 import org.bukkit.util.Vector
 import java.util.*
+import net.minecraft.world.entity.ExperienceOrb as NmsExperienceOrb
 import net.minecraft.world.entity.player.Player as NmsPlayer
 
 class Corpse private constructor(val mainPart: TextDisplay) {
@@ -106,6 +108,7 @@ class Corpse private constructor(val mainPart: TextDisplay) {
     val position: Vector = requirePersistent(PersistentData.CORPSE_POSITION)
     val selectedSlot: Int = requirePersistent(PersistentData.CORPSE_SELECTED_SLOT)
     val deadUuid: UUID = requirePersistent(PersistentData.DEAD_PLAYER_UUID)
+    val experience: Int by lazy { readPersistent(PersistentData.CORPSE_EXPERIENCE) ?: 0 }
     val rotten: Boolean get() /* dynamic */ = checkPersistent(PersistentData.CORPSE_ROT_TIMESTAMP)
 
     private val uuid: UUID = UUID.randomUUID() // private to prevent accidental usage
@@ -175,8 +178,15 @@ class Corpse private constructor(val mainPart: TextDisplay) {
         Bukkit.getOnlinePlayers().forEach(::sendSpawn)
     }
 
-    fun remove(dropItems: Boolean) {
+    fun remove(dropItems: Boolean, dropExperience: Boolean) {
         if (spawned) Bukkit.getOnlinePlayers().forEach(::sendRemove)
+        if (dropExperience && Config.Corpse.storeExperience && experience > 0) NmsExperienceOrb.award(
+            world.nms,
+            position.nms,
+            experience,
+            ExperienceOrb.SpawnReason.PLAYER_DEATH,
+            null
+        )
         removed = true
         rotTask?.cancel()
         despawnTask?.cancel()
@@ -266,7 +276,7 @@ class Corpse private constructor(val mainPart: TextDisplay) {
     fun despawn(poof: Boolean = true) {
         assertNotRemoved()
         if (poof) poof()
-        remove(false)
+        remove(dropItems = false, dropExperience = false)
         mainPart.remove()
     }
 

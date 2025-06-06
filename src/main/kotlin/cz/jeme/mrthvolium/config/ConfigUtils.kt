@@ -38,11 +38,8 @@ fun ConfigurationSection.isSkin(path: String): Boolean {
     return isString("$path.value") && isString("$path.signature")
 }
 
-fun ConfigurationSection.getComponent(path: String): Component? {
-    return getComponent(path, MiniMessage.miniMessage())
-}
 
-fun ConfigurationSection.getComponentList(path: String): List<Component> {
+fun ConfigurationSection.getRichMessageList(path: String): List<Component> {
     return getComponentList(path, MiniMessage.miniMessage())
 }
 
@@ -81,8 +78,8 @@ fun ConfigurationSection.isTitleTimes(path: String): Boolean {
 
 fun ConfigurationSection.getTitle(path: String): Title? {
     return Title.title(
-        getComponent("$path.title") ?: return null,
-        getComponent("$path.subtitle") ?: return null,
+        getRichMessage("$path.title") ?: return null,
+        getRichMessage("$path.subtitle") ?: return null,
         getTitleTimes("$path.times") ?: return null
     )
 }

@@ -114,7 +114,13 @@ object CorpseManager : Listener {
         val z = location.blockZ
 
         var y = location.blockY
-        while (y > world.minHeight && world.getBlockAt(x, y - 1, z).isPassable) y--
+        val minY = world.minHeight
+
+        if (y < minY) {
+            if (!Config.Corpse.spawnInVoid) return
+            y = minY
+        }
+        while (y > minY && world.getBlockAt(x, y - 1, z).isPassable) y--
 
         val corpseMid = Location(
             world,
@@ -155,6 +161,13 @@ object CorpseManager : Listener {
                 mainPart,
                 player.nms.gameProfile.properties["textures"].first()
             )
+            if (Config.Corpse.storeExperience) {
+                PersistentData.CORPSE_EXPERIENCE.write(
+                    mainPart,
+                    droppedExp
+                )
+                droppedExp = 0
+            }
             PersistentData.CORPSE_INVENTORY.write(
                 mainPart,
                 player.inventory.map {
@@ -255,10 +268,10 @@ object CorpseManager : Listener {
                     PersistentData.IS_CORPSE_INTERACTION.delete(interaction)
                     interaction.remove()
                 }
-                // remove corpse and drop items
+                // remove corpse and drop items and exp
                 Corpse.cachedOnly(mainPart)?.let {
                     it.poof()
-                    it.remove(true)
+                    it.remove(dropItems = true, dropExperience = true)
                 }
 
                 // remove main part
@@ -268,9 +281,11 @@ object CorpseManager : Listener {
             }
 
             EntityRemoveEvent.Cause.UNLOAD -> {
-                if (entity.isCorpseMainPart && !Config.Corpse.cacheCorpses) {
+                if (!Config.Corpse.cacheCorpses && entity.isCorpseMainPart) {
                     // if corpse caching is disabled, remove corpse on unload
-                    Corpse.cachedOnly(entity as TextDisplay)?.remove(false)
+                    Corpse.cachedOnly(entity as TextDisplay)?.remove(
+                        dropItems = false, dropExperience = false
+                    )
                 }
             }
 

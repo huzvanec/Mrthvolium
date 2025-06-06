@@ -32,6 +32,8 @@ object Config {
         val rotAfter by required("rot-after", config::getDurationTicks)
         val protection by required("protection", config::getCorpseProtection)
         val cacheCorpses by required("cache-corpses", config::getBoolean)
+        val storeExperience by required("store-experience", config::getBoolean)
+        val spawnInVoid by required("spawn-in-void", config::getBoolean)
 
         object Rotten {
             private val config by section("rotten", Corpse.config::getConfigurationSection)
@@ -53,8 +55,8 @@ object Config {
 
                 val enabled by required("enabled", config::getBoolean)
                 val itemModel by required("model", config::getKey)
-                val itemName by required("name", config::getComponent)
-                val itemLore by required("lore", config::getComponentList)
+                val itemName by required("name", config::getRichMessage)
+                val itemLore by required("lore", config::getRichMessageList)
                 val itemEnchantmentGlint by required("enchantment-glint", config::getBoolean)
             }
         }
