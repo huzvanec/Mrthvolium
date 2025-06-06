@@ -12,7 +12,6 @@ spawns at their death location, storing their items and experience.
 
 - [Paper 1.21.5](https://papermc.io)
 - [Purpur 1.21.5](https://purpurmc.org)
-- [Leaf 1.21.5](https://www.leafmc.one/)
 - ❌ Not compatible with Bukkit
 - ❌ Not compatible with Spigot
 
