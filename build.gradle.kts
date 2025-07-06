@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm") version "2.1.21"
-    id("com.gradleup.shadow") version "9.0.0-beta15"
-    id("xyz.jpenilla.run-paper") version "2.3.1"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
+    alias(libs.plugins.kotlin.plugin)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.run.paper)
+    alias(libs.plugins.paperweight.userdev)
 }
 
 group = "cz.jeme"
@@ -15,18 +15,18 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.5-R0.1-SNAPSHOT")
-    implementation(kotlin("stdlib-jdk8"))
+    paperweight.paperDevBundle(libs.versions.paper.get())
 }
 
-val targetJavaVersion = 21
 kotlin {
-    jvmToolchain(targetJavaVersion)
+    jvmToolchain(libs.versions.java.get().toInt())
 }
+
+val minecraftVersion = libs.versions.paper.get().substringBefore('-')
 
 tasks {
     runServer {
-        minecraftVersion("1.21.5")
+        minecraftVersion(minecraftVersion)
     }
 
     shadowJar {
