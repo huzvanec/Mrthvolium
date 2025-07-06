@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.entity.player.ChatVisiblity
+import net.minecraft.world.phys.Vec3
 import net.minecraft.world.scores.PlayerTeam
 import net.minecraft.world.scores.Team
 import org.bukkit.Bukkit
@@ -180,11 +181,13 @@ class Corpse private constructor(val mainPart: TextDisplay) {
 
     fun remove(dropItems: Boolean, dropExperience: Boolean) {
         if (spawned) Bukkit.getOnlinePlayers().forEach(::sendRemove)
-        if (dropExperience && Config.Corpse.storeExperience && experience > 0) NmsExperienceOrb.award(
+        if (dropExperience && Config.Corpse.storeExperience && experience > 0) NmsExperienceOrb.awardWithDirection(
             world.nms,
             position.nms,
+            Vec3.ZERO,
             experience,
             ExperienceOrb.SpawnReason.PLAYER_DEATH,
+            null,
             null
         )
         removed = true

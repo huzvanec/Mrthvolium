@@ -1,5 +1,6 @@
 package cz.jeme.mrthvolium.network
 
+import io.papermc.paper.util.KeepAlive
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.network.CommonListenerCookie
 import net.minecraft.server.network.ServerGamePacketListenerImpl
@@ -12,6 +13,9 @@ class DummyServerGamePacketListener(player: ServerPlayer) : ServerGamePacketList
         player.gameProfile,
         0,
         player.clientInformation(),
-        false
+        false,
+        null,
+        emptySet<String>(),
+        KeepAlive()
     )
 )

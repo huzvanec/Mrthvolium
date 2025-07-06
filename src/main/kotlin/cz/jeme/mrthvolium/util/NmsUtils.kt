@@ -4,7 +4,6 @@ import net.minecraft.network.protocol.Packet
 import net.minecraft.server.dedicated.DedicatedServer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.server.network.ServerGamePacketListenerImpl
 import net.minecraft.world.phys.Vec3
 import org.bukkit.Server
 import org.bukkit.World
@@ -27,12 +26,9 @@ import net.minecraft.world.scores.Scoreboard as NMSScoreboard
 inline val Player.nms: ServerPlayer
     get() = (this as CraftPlayer).handle
 
-inline val Player.connection: ServerGamePacketListenerImpl
-    get() = nms.connection
-
 fun Player.send(first: Packet<*>, vararg rest: Packet<*>) {
-    connection.send(first)
-    rest.forEach { connection.send(it) }
+    nms.connection.send(first)
+    rest.forEach { nms.connection.send(it) }
 }
 
 inline val Server.nms: DedicatedServer
