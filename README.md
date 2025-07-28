@@ -10,8 +10,8 @@ spawns at their death location, storing their items and experience.
 
 ## Supported platforms
 
-- [Paper 1.21.5](https://papermc.io)
-- [Purpur 1.21.5](https://purpurmc.org)
+- [Paper 1.21.8](https://papermc.io)
+- [Purpur 1.21.8](https://purpurmc.org)
 - ❌ Not compatible with Bukkit
 - ❌ Not compatible with Spigot
 
