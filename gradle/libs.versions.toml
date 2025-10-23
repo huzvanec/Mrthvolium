@@ -1,6 +1,6 @@
 [versions]
 java = "21"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 paper = "1.21.8-R0.1-SNAPSHOT"
 run-paper = "2.3.1"
 userdev = "2.0.0-beta.19"
